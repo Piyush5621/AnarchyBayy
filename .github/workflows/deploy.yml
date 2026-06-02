@@ -1,3 +1,4 @@
+# Pipeline trigger: updated VITE_API_URL settings
 name: Build and Push to GHCR
 
 on:

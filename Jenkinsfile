@@ -9,10 +9,26 @@ pipeline {
     }
 
     stages {
+        stage('Validate Environment') {
+            steps {
+                echo "Validating Docker and System Environment..."
+                sh 'docker --version'
+                sh 'docker compose version'
+            }
+        }
+
+        stage('Pull Images') {
+            steps {
+                echo "Pulling latest Docker images from GHCR..."
+                sh '''
+                    export GITHUB_REPOSITORY_OWNER=${GITHUB_OWNER}
+                    docker compose -f docker-compose.prod.yml pull
+                '''
+            }
+        }
+
         stage('Deploy to EC2') {
             steps {
-                // Securely load the backend .env file from Jenkins Credentials
-                // Replace 'backend-env-file' with the ID of the Secret File you upload to Jenkins
                 withCredentials([file(credentialsId: 'backend-env-file', variable: 'BACKEND_ENV')]) {
                     sh '''
                         echo "Deploying to EC2 via Docker Compose..."
@@ -24,12 +40,6 @@ pipeline {
                         # Export variables for docker-compose.prod.yml
                         export GITHUB_REPOSITORY_OWNER=${GITHUB_OWNER}
                         export FRONTEND_URL=${FRONTEND_URL}
-
-                        # Note: If your GitHub repository is private, you will need to docker login to GHCR first:
-                        # echo $GHCR_PAT | docker login ghcr.io -u $GITHUB_OWNER --password-stdin
-                        
-                        # Pull the latest images from GHCR
-                        docker compose -f docker-compose.prod.yml pull
                         
                         # Restart the containers with the new images
                         docker compose -f docker-compose.prod.yml up -d
@@ -37,9 +47,19 @@ pipeline {
                         # Clean up the .env file from the filesystem for security
                         rm .env
                         
-                        echo "Deployment successful!"
+                        echo "Containers started!"
                     '''
                 }
+            }
+        }
+
+        stage('Health Check') {
+            steps {
+                echo "Verifying application health..."
+                // Sleep for 3 seconds to let backend start listening
+                sleep 3
+                sh 'curl --fail http://localhost:3000/health-check'
+                echo "Deployment successfully verified!"
             }
         }
     }

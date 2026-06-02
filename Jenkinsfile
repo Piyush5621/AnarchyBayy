@@ -3,9 +3,9 @@ pipeline {
 
     environment {
         // Your GitHub username or organization name, used to build the image URL
-        GITHUB_OWNER = 'thesolution12'
-        // FRONTEND_URL configures CORS on the backend. Since you are using a raw IP, replace this with your EC2 IP.
-        FRONTEND_URL = 'http://15.206.182.3'
+        GITHUB_OWNER = 'Piyush5621'
+        // FRONTEND_URL configures CORS on the backend. Replace this with your new EC2 IP.
+        FRONTEND_URL = 'http://YOUR_NEW_EC2_IP'
     }
 
     stages {

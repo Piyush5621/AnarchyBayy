@@ -7,8 +7,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  FRONTEND_IMAGE_NAME: thesolution12/anarchybay1-frontend
-  BACKEND_IMAGE_NAME: thesolution12/anarchybay1-backend
+  FRONTEND_IMAGE_NAME: piyush5621/anarchybay1-frontend
+  BACKEND_IMAGE_NAME: piyush5621/anarchybay1-backend
 
 jobs:
   build-and-push:

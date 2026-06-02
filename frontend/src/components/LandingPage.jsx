@@ -68,7 +68,7 @@ function HeroSection({ navigate, isAuthenticated }) {
             </div>
 
             <h1 className="text-5xl sm:text-6xl md:text-8xl font-black leading-[0.9] tracking-tight italic uppercase">
-              Sell your
+              Sell yours
               <span className="block text-[var(--pink-500)]">
                 Digital <br className="sm:hidden" /> Products
               </span>

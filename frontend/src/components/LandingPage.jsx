@@ -63,7 +63,7 @@ function HeroSection({ navigate, isAuthenticated }) {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--yellow-400)] border-3 border-black shadow-[4px_4px_0px_var(--black)]">
               <span className="w-2 h-2 bg-[var(--pink-500)] rounded-full animate-pulse" />
               <span className="font-bold text-sm uppercase">
-                Built for Indian Creators
+                Built for indiannn Creators
               </span>
             </div>
 

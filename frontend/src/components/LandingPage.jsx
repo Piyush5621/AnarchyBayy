@@ -76,7 +76,7 @@ function HeroSection({ navigate, isAuthenticated }) {
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-700 max-w-lg leading-tight font-bold">
-              The simplest way to sell templates, code, ebooks & digital assets.
+              The simplest way to sell templates, code, ebooks & digital Products.
               <span className="block mt-2">
                 {" "}
                 UPI payments, instant delivery, zero hassle.
